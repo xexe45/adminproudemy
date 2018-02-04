@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './../shared/shared.module';
@@ -10,11 +11,15 @@ import { Graficas1Component } from './graficas1/graficas1.component';
 import { PAGES_ROUTES } from './pages.routes';
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
 
-import { ChartsModule } from "ng2-charts";
+import { PipesModule } from '../pipes/pipes.module';
+
+import { ChartsModule } from 'ng2-charts';
 import { GraficoComponent } from '../components/grafico/grafico.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { ProfileComponent } from './profile/profile.component';
+
 
 @NgModule({
   declarations: [
@@ -26,9 +31,10 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     GraficoComponent,
     AccountSettingsComponent,
     PromesasComponent,
-    RxjsComponent
+    RxjsComponent,
+    ProfileComponent
   ],
   exports: [DashboardComponent, ProgressComponent, Graficas1Component],
-  imports: [SharedModule, PAGES_ROUTES, FormsModule, ChartsModule]
+  imports: [CommonModule, SharedModule, PAGES_ROUTES, FormsModule, ChartsModule, PipesModule]
 })
 export class PagesModule {}
