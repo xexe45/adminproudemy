@@ -1,3 +1,4 @@
+import { VerificaTokenGuard } from './../services/guards/verifica-token.guard';
 import { MedicosComponent } from './medicos/medicos.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './pages.component';
@@ -15,16 +16,12 @@ import { MedicoComponent } from './medicos/medico.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { AdminGuard } from '../services/service.index';
 
-
+// Rutas que solo se cargarán en el lazy load.
 const pagesRoutes: Routes = [
-  {
-    path: '',
-    component: PagesComponent,
-    canActivate: [LoginGuardGuard],
-    children: [
       {
         path: 'dashboard',
         component: DashboardComponent,
+        canActivate: [VerificaTokenGuard],
         data: { titulo: 'Dashboard' }
       },
       {
@@ -81,8 +78,6 @@ const pagesRoutes: Routes = [
         data: { titulo: 'Actualizar Médico' }
       },
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
-    ]
-  }
 ];
 
 export const PAGES_ROUTES = RouterModule.forChild(pagesRoutes);

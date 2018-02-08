@@ -1,13 +1,21 @@
+import { PagesComponent } from './pages/pages.component';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
 
 import { NopagefoundComponent } from './shared/nopagefound/nopagefound.component';
+import { LoginGuardGuard } from './services/guards/login-guard.guard';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  {
+    path: '',
+    component: PagesComponent,
+    canActivate: [LoginGuardGuard],
+    loadChildren: './pages/pages.module#PagesModule'  // path al modulo que se carga de forma dinamica, nombre del modulo
+  },
   { path: '**', component: NopagefoundComponent }
 ];
 
